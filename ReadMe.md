@@ -1,4 +1,4 @@
-#  Olá, tudo bem?! Eu me chamo Víctor.
+#  About me
 🔭 Áreas de interesse (Analista de dados, Data Science e Web))<br>
 
 # 📊 GitHub Stats
