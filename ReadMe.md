@@ -18,10 +18,15 @@ Sou um entusiasta do desenvolvimento frontend com foco em Node.js. Estudo progra
       <img src="https://github-readme-streak-stats.herokuapp.com/?user=nomevict&theme=dark&hide_border=false" alt="Estatísticas de streak" />
     </td>
     <td>
-      ![Linguagens mais usadas](https://github-readme-stats.vercel.app/api/top-langs/?username=nomevict&theme=dark&hide_border=false&include_all_commits=false&count_private=false&layout=compact)
+      <img src="https://github-readme-stats.vercel.app/api?username=nomevict&show_icons=true&theme=dark&hide_border=false" alt="Estatísticas de commits" />
     </td>
   </tr>
 </table>
+
+<br>
+
+![Linguagens mais usadas](https://github-readme-stats.vercel.app/api/top-langs/?username=nomevict&theme=dark&hide_border=false&include_all_commits=false&count_private=false&layout=compact)
+
 
 ## 🛠️ Linguagens e Ferramentas
 
