@@ -17,7 +17,7 @@ Sou um entusiasta do desenvolvimento frontend com foco em Node.js. Estudo progra
 <br>
 
 
-## 🛠️ Linguagens e Ferramentas
+## Linguagens e Ferramentas
 
 Aqui estão algumas das linguagens e ferramentas com as quais trabalho:
 
