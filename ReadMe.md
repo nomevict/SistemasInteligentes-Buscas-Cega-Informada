@@ -2,17 +2,16 @@
 
 Sou um entusiasta do desenvolvimento frontend com foco em Node.js. Estudo programação desde 2020 e atualmente sou estudante de Sistemas de Informação na Universidade Federal do Piauí, onde também realizo pesquisas na área de visão computacional.
 
-## 💻 Especializações
-
 > 💻 Especializando-se em Front-End (JavaScript, CSS, React, Docker).<br>
 > 🎓 Bacharelando em Sistemas de Informação na UFPI.<br>
 
 ##
  
-<div align="center" >
+<div align="center">
   <a href="https://github.com/nomevict">
-  <img width="49%" height="195px" src="https://github-readme-stats.vercel.app/api?username=nomevict&show_icons=true&theme=transparent" />
-  <img width="44%" height="195px" src="https://github-readme-stats.vercel.app/api/top-langs/?username=nomevict&hide_progress=true&theme=transparent" /> 
+    <img width="49%" height="195px" src="https://github-readme-stats.vercel.app/api?username=nomevict&show_icons=true&theme=dark" />
+    <img width="44%" height="195px" src="https://github-readme-stats.vercel.app/api/top-langs/?username=nomevict&hide_progress=true&theme=dark" /> 
+  </a>
 </div>
 
 <br>
