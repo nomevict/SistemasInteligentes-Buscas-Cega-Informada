@@ -4,24 +4,17 @@ Sou um entusiasta do desenvolvimento frontend com foco em Node.js. Estudo progra
 
 ## 💻 Especializações
 
-- Desenvolvimento Front-End: JavaScript, CSS, Html, Docker
-- Bacharelando em Sistemas de Informação na UFPI
+> 💻 Especializando-se em Back-End (JavaScript, NodeJs, AWS, Docker).<br>
+> 🎓 Bacharelando em Sistemas de Informação na UFPI.<br>
 
-## 📊 Estatísticas do GitHub
-
-<table>
-  <tr>
-    <td>
-      <img src="https://github-readme-stats.vercel.app/api?username=nomevict&theme=dark&hide_border=false&include_all_commits=false&count_private=false" alt="Estatísticas do GitHub" />
-    </td>
-    <td>
-      <img src="https://github-readme-streak-stats.herokuapp.com/?user=nomevict&theme=dark&hide_border=false" alt="Estatísticas de streak" />
-    </td>
-    <td>
-      <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=nomevict&theme=dark&hide_border=false&include_all_commits=false&count_private=false&layout=compact" />
-    </td>
-  </tr>
-</table>
+##
+ 
+<div align="center" >
+  <a href="https://github.com/nomevini">
+  <img width="49%" height="195px" src="https://github-readme-stats.vercel.app/api?username=nomevini&show_icons=true&theme=transparent" />
+  <img width="44%" height="195px" src="https://github-readme-stats.vercel.app/api/top-langs/?username=nomevini&hide_progress=true&theme=transparent" /> 
+  
+</div>
 
 <br>
 
