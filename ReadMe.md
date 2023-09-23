@@ -10,10 +10,9 @@ Sou um entusiasta do desenvolvimento frontend com foco em Node.js. Estudo progra
 ##
  
 <div align="center" >
-  <a href="https://github.com/nomevini">
+  <a href="https://github.com/nomevict">
   <img width="49%" height="195px" src="https://github-readme-stats.vercel.app/api?username=nomevict&show_icons=true&theme=transparent" />
   <img width="44%" height="195px" src="https://github-readme-stats.vercel.app/api/top-langs/?username=nomevict&hide_progress=true&theme=transparent" /> 
-  
 </div>
 
 <br>
