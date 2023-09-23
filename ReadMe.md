@@ -1,7 +1,7 @@
 # Olá, sou Víctor Macêdo Carvalho - Desenvolvedor Frontend 👋
 
 Front-end em evolução, focado em HTML, CSS e JavaScript desde 2021. Estudante de Sistemas de Informação na Universidade Federal do Piauí, apaixonado por Node.js e pesquisas em visão computacional. Iniciante em 2020, sempre aprendendo.
-> 💻 Especializando-se em Front-End (JavaScript, CSS, React, Docker).<br>
+> 🔍 Especializando-se em Front-End (JavaScript, CSS, React, Docker).<br>
 > 🎓 Bacharelando em Sistemas de Informação na UFPI.<br>
 
 ##
