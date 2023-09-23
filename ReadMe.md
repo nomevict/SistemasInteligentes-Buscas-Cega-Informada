@@ -9,11 +9,19 @@ Sou um entusiasta do desenvolvimento frontend com foco em Node.js. Estudo progra
 
 ## 📊 Estatísticas do GitHub
 
-![Estatísticas do GitHub](https://github-readme-stats.vercel.app/api?username=nomevict&theme=dark&hide_border=false&include_all_commits=false&count_private=false)
-
-![Estatísticas de streak](https://github-readme-streak-stats.herokuapp.com/?user=nomevict&theme=dark&hide_border=false)
+<table>
+  <tr>
+    <td>
+      <img src="https://github-readme-stats.vercel.app/api?username=nomevict&theme=dark&hide_border=false&include_all_commits=false&count_private=false" alt="Estatísticas do GitHub" />
+    </td>
+    <td>
+      <img src="https://github-readme-streak-stats.herokuapp.com/?user=nomevict&theme=dark&hide_border=false" alt="Estatísticas de streak" />
+    </td>
+  </tr>
+</table>
 
 ![Linguagens mais usadas](https://github-readme-stats.vercel.app/api/top-langs/?username=nomevict&theme=dark&hide_border=false&include_all_commits=false&count_private=false&layout=compact)
+
 
 ## 📈 Visitas ao Perfil
 
@@ -26,16 +34,13 @@ Sou um entusiasta do desenvolvimento frontend com foco em Node.js. Estudo progra
 Aqui estão algumas das linguagens e ferramentas com as quais trabalho:
 
 <p align="left">
-  <img src="https://img.icons8.com/color/48/000000/javascript.png" alt="JavaScript" width="40" height="40"/>
-  <img src="https://img.icons8.com/color/48/000000/nodejs.png" alt="Node.js" width="40" height="40"/>
-  <img src="https://img.icons8.com/color/48/000000/docker.png" alt="Docker" width="40" height="40"/>
-  <img src="https://img.icons8.com/color/48/000000/amazon-web-services.png" alt="AWS" width="40" height="40"/>
-  <img src="https://img.icons8.com/color/48/000000/python.png" alt="Python" width="40" height="40"/>
-  <img src="https://img.icons8.com/color/48/000000/html-5.png" alt="HTML" width="40" height="40"/>
-  <img src="https://img.icons8.com/color/48/000000/css3.png" alt="CSS" width="40" height="40"/>
-  <img src="https://img.icons8.com/color/48/000000/prolog.png" alt="Prolog" width="40" height="40"/>
-  <img src="https://img.icons8.com/color/48/000000/c-programming.png" alt="C" width="40" height="40"/>
-  <!-- Adicione mais ícones aqui conforme necessário -->
+  <div>
+  <img align="center" alt="Vini-Python" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg">
+  <img align="center" alt="Vini-Js" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-plain.svg">
+  <img align="center" alt="Vini-Python" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg">
+  <img align="center" alt="Vini-HTML" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg">
+  <img align="center" alt="Vini-CSS" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg">
+</div>
 </p>
 
 
