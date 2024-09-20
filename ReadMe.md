@@ -24,8 +24,5 @@ Aqui estão algumas das linguagens e ferramentas com as quais trabalho:
   <img align="center" alt="Víctor-PowerBI" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/powerbi/powerbi-original.svg">
   <img align="center" alt="Víctor-Jupyter" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg">
   <img align="center" alt="Víctor-R" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg">
-  <img align="center" alt="Víctor-Excel" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/microsoftsqlserver/microsoftsqlserver-original.svg">   
+  <img align="center" alt="Víctor-Excel" height="30" width="40" src="https://upload.wikimedia.org/wikipedia/commons/8/86/Microsoft_Excel_2013_logo.svg">   
 </div>
-
-
-
