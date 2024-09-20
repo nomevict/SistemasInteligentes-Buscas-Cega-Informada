@@ -1,8 +1,9 @@
-# Olá, sou Víctor Macêdo Carvalho - Desenvolvedor Frontend 👋
+# Olá, sou Víctor Macêdo Carvalho - Analista de Dados👋
 
-Front-end em evolução, focado em HTML, CSS e JavaScript desde 2021. Estudante de Sistemas de Informação na Universidade Federal do Piauí, apaixonado por Node.js e pesquisas em visão computacional. Iniciante em 2020, sempre aprendendo.
-> 🔍 Especializando-se em Front-End (JavaScript, CSS, HTML, React).<br>
-##
+Analista de Dados em formação com experiência desde 2021 em análise de dados e desenvolvimento de soluções com foco em eficiência e clareza. Estudante de Sistemas de Informação na Universidade Federal do Piauí, apaixonado por transformar dados em informações valiosas para a tomada de decisão. Comecei minha jornada em 2020 e continuo em constante aprendizado.
+
+> 🔍 Especializando-se em Análise de Dados (Python, SQL, Power BI, Estatística e Machine Learning).
+
  
 <div align="center">
   <a href="https://github.com/nomevict">
