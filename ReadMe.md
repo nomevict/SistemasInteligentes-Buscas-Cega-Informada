@@ -8,10 +8,6 @@
 - 🚀 Apaixonado por dados, automação e desenvolvimento de soluções eficientes.  
 - 📅 Iniciei minha jornada em 2020 e sigo em constante aprendizado.  
 
-## 🛠️ **Habilidades Técnicas**  
-- 📊 **Especialização:** Análise de Dados, Business Intelligence, Estatística e Machine Learning.  
-- 🐍 **Tecnologias:** Python, SQL, R, Power BI, Tableau, Pandas, NumPy, Scikit-learn, Matplotlib.  
-
 ## 📈 **Estatísticas do GitHub**  
 <div align="center">
   <a href="https://github.com/nomevict">
@@ -30,12 +26,17 @@ Aqui estão algumas das principais tecnologias com as quais trabalho:
   <img align="center" alt="Víctor-SQL" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg">
   <img align="center" alt="Víctor-Jupyter" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg">
   <img align="center" alt="Víctor-R" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg">
-  <img align="center" alt="Víctor-PowerBI" height="30" width="40" src="https://upload.wikimedia.org/wikipedia/commons/c/cf/Power_BI_logo.svg">
+  <img align="center" alt="Víctor-C" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg">
+  <img align="center" alt="Víctor-NumPy" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg">
+  <img align="center" alt="Víctor-Pandas" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg">
+  <img align="center" alt="Víctor-HTML" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg">
+  <img align="center" alt="Víctor-CSS" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg">
+  <img align="center" alt="Víctor-JavaScript" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg">
 </div>
 
 ---
 
 ## 📫 **Vamos nos conectar?**  
 📩 **Email:** [victmacc@ufpi.edu.br](victmacc@ufpi.edu.br)  
-🔗 **LinkedIn:** [https://www.linkedin.com/in/victor-mac%C3%AAdo-7543a2291/](https://www.linkedin.com/in/victor-mac%C3%AAdo-7543a2291/)  
+🔗 **LinkedIn:** [linkedin.com/in/victor-macedo](https://www.linkedin.com/in/victor-mac%C3%AAdo-7543a2291/)  
 🐙 **GitHub:** [github.com/nomevict](https://github.com/nomevict)  
