@@ -36,6 +36,6 @@ Aqui estão algumas das principais tecnologias com as quais trabalho:
 ---
 
 ## 📫 **Vamos nos conectar?**  
-📩 **Email:** [seuemail@email.com](victmacc@ufpi.edu.br)  
-🔗 **LinkedIn:** [linkedin.com/in/seu-perfil](https://www.linkedin.com/in/victor-mac%C3%AAdo-7543a2291/)  
+📩 **Email:** [victmacc@ufpi.edu.br](victmacc@ufpi.edu.br)  
+🔗 **LinkedIn:** [https://www.linkedin.com/in/victor-mac%C3%AAdo-7543a2291/](https://www.linkedin.com/in/victor-mac%C3%AAdo-7543a2291/)  
 🐙 **GitHub:** [github.com/nomevict](https://github.com/nomevict)  
