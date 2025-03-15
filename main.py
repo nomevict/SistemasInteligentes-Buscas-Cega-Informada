@@ -20,7 +20,7 @@ DARK_GRAY = (105, 105, 105)  # Cor para detalhes
 # Inicializa pygame
 pygame.init()
 win = pygame.display.set_mode((WIDTH + INFO_AREA_WIDTH, HEIGHT))
-pygame.display.set_caption("Tabuleiro com Obstáculos Variáveis")
+pygame.display.set_caption("Tabuleiro com Obstáculos Incrementais")
 
 # Fontes
 title_font = pygame.font.SysFont('Arial', 24, bold=True)
@@ -36,20 +36,53 @@ end = (ROWS - 1, COLS - 1)  # Canto inferior direito
 
 # Definição do número mínimo e máximo de obstáculos
 total_cells = ROWS * COLS
-min_obstacles = int(total_cells * 0)  
+min_obstacles = 0  
 max_obstacles = int(total_cells * 0.25)  
-num_obstacles = random.randint(min_obstacles, max_obstacles)
+num_obstacles = 0  # Começando com 0 obstáculos
 
-def generate_obstacles(num):
-    """Gera um conjunto de obstáculos sem sobreposição"""
-    all_cells = [(r, c) for r in range(ROWS) for c in range(COLS) if (r, c) != start and (r, c) != end]
-    random.shuffle(all_cells)
-    num = min(num, len(all_cells))
-    selected_cells = all_cells[:num]
-    return set(selected_cells)
+# Lista de todas as células disponíveis (excluindo início e fim)
+all_available_cells = [(r, c) for r in range(ROWS) for c in range(COLS) 
+                      if (r, c) != start and (r, c) != end]
+random.shuffle(all_available_cells)
 
-# Gera os obstáculos iniciais
-obstacles = generate_obstacles(num_obstacles)
+# Lista para manter ordem dos obstáculos adicionados
+obstacles = []
+
+def add_obstacle():
+    """Adiciona um novo obstáculo preservando os anteriores"""
+    global obstacles, all_available_cells
+    
+    # Filtra células que já são obstáculos
+    available_cells = [cell for cell in all_available_cells if cell not in obstacles]
+    
+    if available_cells:
+        # Escolhe uma célula aleatória das disponíveis
+        new_obstacle = random.choice(available_cells)
+        obstacles.append(new_obstacle)
+        return True
+    return False
+
+def remove_obstacle():
+    """Remove o último obstáculo adicionado"""
+    global obstacles
+    
+    if obstacles:
+        obstacles.pop()
+        return True
+    return False
+
+def regenerate_obstacles(num):
+    """Regenera todos os obstáculos"""
+    global obstacles, all_available_cells
+    
+    # Reseta a lista de células disponíveis e embaralha
+    all_available_cells = [(r, c) for r in range(ROWS) for c in range(COLS) 
+                          if (r, c) != start and (r, c) != end]
+    random.shuffle(all_available_cells)
+    
+    # Seleciona novas células para obstáculos
+    num = min(num, len(all_available_cells))
+    obstacles = all_available_cells[:num]
 
 def draw_board():
     """Desenha o tabuleiro com fundo branco e linhas de grade"""
@@ -122,9 +155,9 @@ def display_info():
     
     # Lista de instruções com ícones
     instructions = [
-        ("↑: Aumentar obstáculos", GREEN),
-        ("↓: Diminuir obstáculos", RED),
-        ("R: Regenerar obstáculos", BLUE),
+        ("↑: Adicionar obstáculo", GREEN),
+        ("↓: Remover obstáculo", RED),
+        ("R: Regenerar todos", BLUE),
         ("ESPAÇO: Aleatório", (128, 0, 128)),  # Roxo
         ("Esc: Sair", DARK_GRAY)
     ]
@@ -171,20 +204,21 @@ def main():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_UP:
                     if num_obstacles < max_obstacles:
-                        num_obstacles += 1
-                        obstacles = generate_obstacles(num_obstacles)
+                        if add_obstacle():
+                            num_obstacles += 1
 
                 if event.key == pygame.K_DOWN:
                     if num_obstacles > min_obstacles:
-                        num_obstacles -= 1
-                        obstacles = generate_obstacles(num_obstacles)
+                        if remove_obstacle():
+                            num_obstacles -= 1
                         
                 if event.key == pygame.K_r:
-                    obstacles = generate_obstacles(num_obstacles)
+                    num_obstacles = len(obstacles)  # Mantém o mesmo número
+                    regenerate_obstacles(num_obstacles)
                     
                 if event.key == pygame.K_SPACE:
                     num_obstacles = random.randint(min_obstacles, max_obstacles)
-                    obstacles = generate_obstacles(num_obstacles)
+                    regenerate_obstacles(num_obstacles)
 
                 if event.key == pygame.K_ESCAPE:
                     run = False
