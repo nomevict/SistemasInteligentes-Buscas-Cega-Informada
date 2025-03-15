@@ -27,10 +27,8 @@ points = [(row, col) for row in range(ROWS + 1) for col in range(COLS + 1)]
 start = (0, 0)  # Canto superior esquerdo
 end = (ROWS, COLS)  # Canto inferior direito
 
-# Definir um número variável de obstáculos
-max_obstacles = (ROWS * COLS) // 4  # Máximo de 25% das células podem ser obstáculos
-num_obstacles = random.randint(max_obstacles // 2, max_obstacles)  # Valor variável
-
+# Gera obstáculos sem sobreposição nem colados
+num_obstacles = 6  # Número de obstáculos a serem gerados
 obstacles = set()
 
 while len(obstacles) < num_obstacles:
