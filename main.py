@@ -48,16 +48,44 @@ random.shuffle(all_available_cells)
 # Lista para manter ordem dos obstáculos adicionados
 obstacles = []
 
+def get_neighbors(cell):
+    """Retorna todas as células vizinhas que compartilham pelo menos um vértice"""
+    row, col = cell
+    neighbors = []
+    
+    # Verificar células que compartilham vértices nos 4 lados
+    # Norte, Sul, Leste, Oeste
+    directions = [
+        (row-1, col), (row+1, col),  # Norte e Sul
+        (row, col-1), (row, col+1),  # Oeste e Leste
+        (row-1, col-1), (row-1, col+1),  # Noroeste e Nordeste
+        (row+1, col-1), (row+1, col+1)   # Sudoeste e Sudeste
+    ]
+    
+    # Filtrar apenas células válidas dentro do tabuleiro
+    for r, c in directions:
+        if 0 <= r < ROWS and 0 <= c < COLS:
+            neighbors.append((r, c))
+            
+    return neighbors
+
 def add_obstacle():
-    """Adiciona um novo obstáculo preservando os anteriores"""
+    """Adiciona um novo obstáculo sem compartilhar vértices com os existentes"""
     global obstacles, all_available_cells
     
-    # Filtra células que já são obstáculos
-    available_cells = [cell for cell in all_available_cells if cell not in obstacles]
+    # Obtém todas as células que já são obstáculos ou são vizinhas de obstáculos
+    invalid_cells = set(obstacles)
+    for obstacle in obstacles:
+        invalid_cells.update(get_neighbors(obstacle))
     
-    if available_cells:
+    # Filtra células disponíveis que não são inválidas
+    valid_cells = [cell for cell in all_available_cells 
+                  if cell not in invalid_cells 
+                  and cell != start and cell != end]
+    
+    if valid_cells:
         # Escolhe uma célula aleatória das disponíveis
-        new_obstacle = random.choice(available_cells)
+        new_obstacle = random.choice(valid_cells)
         obstacles.append(new_obstacle)
         return True
     return False
@@ -72,17 +100,21 @@ def remove_obstacle():
     return False
 
 def regenerate_obstacles(num):
-    """Regenera todos os obstáculos"""
+    """Regenera todos os obstáculos sem compartilhar vértices"""
     global obstacles, all_available_cells
+    
+    # Reseta a lista de obstáculos
+    obstacles = []
     
     # Reseta a lista de células disponíveis e embaralha
     all_available_cells = [(r, c) for r in range(ROWS) for c in range(COLS) 
                           if (r, c) != start and (r, c) != end]
     random.shuffle(all_available_cells)
     
-    # Seleciona novas células para obstáculos
-    num = min(num, len(all_available_cells))
-    obstacles = all_available_cells[:num]
+    # Adiciona obstáculos um por um, respeitando a restrição de vértices
+    for _ in range(num):
+        if not add_obstacle():
+            break  # Para se não conseguir adicionar mais obstáculos
 
 def draw_board():
     """Desenha o tabuleiro com fundo branco e linhas de grade"""
