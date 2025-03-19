@@ -1,4 +1,4 @@
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt 
 import random
 import math
 from matplotlib.widgets import RectangleSelector
@@ -28,8 +28,11 @@ def adicionar_obstaculo():
         
         # Verifica se o novo obstáculo está a uma distância aceitável dos outros
         # e se está dentro dos limites do tabuleiro
+        # Garante que o obstáculo não se sobreponha ao ponto inicial ou final
         if all(calcular_distancia(novo_obstaculo, obst) > 1 for obst in obstaculos) and \
-           0 <= novo_x < largura_tabuleiro and 0 <= novo_y < altura_tabuleiro:
+           0 <= novo_x < largura_tabuleiro and 0 <= novo_y < altura_tabuleiro and \
+           calcular_distancia(novo_obstaculo, ponto_inicial) > 1 and \
+           calcular_distancia(novo_obstaculo, ponto_final) > 1:
             obstaculos.append(novo_obstaculo)
 
 # Adicionar obstáculos de forma distribuída
@@ -41,11 +44,13 @@ def plotar_tabuleiro():
     
     # Plota os obstáculos como quadrados azuis com tamanho 1
     for obstaculo in obstaculos:
-        ax.add_patch(plt.Rectangle((obstaculo[0] - 0.5, obstaculo[1] - 0.5), 1, 1, color='blue'))
+        # Garante que o obstáculo não saia dos limites do tabuleiro
+        if 0 <= obstaculo[0] < largura_tabuleiro and 0 <= obstaculo[1] < altura_tabuleiro:
+            ax.add_patch(plt.Rectangle((obstaculo[0] - 0.5, obstaculo[1] - 0.5), 1, 1, color='blue'))
     
-    # Plota o ponto inicial e final
-    ax.add_patch(plt.Circle(ponto_inicial, 0.4, color='green'))
-    ax.add_patch(plt.Circle(ponto_final, 0.4, color='blue'))
+    # Plota o ponto inicial e final com a cor vermelha (aumentando o tamanho do círculo)
+    ax.add_patch(plt.Circle(ponto_inicial, 0.6, color='red'))  # Ponto inicial em vermelho, maior
+    ax.add_patch(plt.Circle(ponto_final, 0.6, color='red'))    # Ponto final em vermelho, maior
     
     ax.set_xlim(0, largura_tabuleiro)
     ax.set_ylim(0, altura_tabuleiro)
