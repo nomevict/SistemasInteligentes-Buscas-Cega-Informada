@@ -1,48 +1,20 @@
-import pygame
+import matplotlib.pyplot as plt
 import random
 
 # Configuração do tabuleiro
-WIDTH, HEIGHT = 800, 800  # Tamanho da tela
-ROWS, COLS = 8, 8
-GRID_SIZE = 600 // COLS  # Tamanho dos quadrados do tabuleiro
-MARGIN = 50  # Margem ao redor do tabuleiro
-INFO_AREA_WIDTH = 200  # Largura da área de informações
-
-# Cores
-WHITE = (255, 255, 255)
-BLACK = (0, 0, 0)
-GREEN = (34, 139, 34)     # Verde mais escuro para o ponto inicial
-BLUE = (25, 25, 112)      # Azul marinho para o ponto final
-RED = (220, 20, 60)       # Vermelho crimson para obstáculos
-GRAY = (180, 180, 180)    # Grade - um pouco mais suave
-DARK_GRAY = (105, 105, 105)  # Cor para detalhes
-
-# Inicializa pygame
-pygame.init()
-win = pygame.display.set_mode((WIDTH + INFO_AREA_WIDTH, HEIGHT))
-pygame.display.set_caption("Tabuleiro com Obstáculos Incrementais")
-
-# Fontes
-title_font = pygame.font.SysFont('Arial', 24, bold=True)
-info_font = pygame.font.SysFont('Arial', 20)
-counter_font = pygame.font.SysFont('Arial', 22, bold=True)
-
-# Criando a grade de pontos (vértices nas interseções)
-points = [(row, col) for row in range(ROWS) for col in range(COLS)]
-
-# Define o ponto inicial e final
-start = (0, 0)  # Canto superior esquerdo
-end = (ROWS - 1, COLS - 1)  # Canto inferior direito
+ROWS, COLS = 30, 30  # Número de linhas e colunas
+GRID_SIZE = 600 // COLS  # Tamanho dos quadrados do tabuleiro (unidade de distância no gráfico)
 
 # Definição do número mínimo e máximo de obstáculos
 total_cells = ROWS * COLS
 min_obstacles = 0  
-max_obstacles = int(total_cells * 0.25)  
+max_obstacles = total_cells - 2  # O número máximo de obstáculos é o total de células menos os pontos inicial e final
 num_obstacles = 0  # Começando com 0 obstáculos
 
 # Lista de todas as células disponíveis (excluindo início e fim)
-all_available_cells = [(r, c) for r in range(ROWS) for c in range(COLS) 
-                      if (r, c) != start and (r, c) != end]
+start = (0, 0)  # Ponto inicial
+end = (ROWS - 1, COLS - 1)  # Ponto final
+all_available_cells = [(r, c) for r in range(ROWS) for c in range(COLS) if (r, c) != start and (r, c) != end]
 random.shuffle(all_available_cells)
 
 # Lista para manter ordem dos obstáculos adicionados
@@ -54,7 +26,6 @@ def get_neighbors(cell):
     neighbors = []
     
     # Verificar células que compartilham vértices nos 4 lados
-    # Norte, Sul, Leste, Oeste
     directions = [
         (row-1, col), (row+1, col),  # Norte e Sul
         (row, col-1), (row, col+1),  # Oeste e Leste
@@ -90,17 +61,8 @@ def add_obstacle():
         return True
     return False
 
-def remove_obstacle():
-    """Remove o último obstáculo adicionado"""
-    global obstacles
-    
-    if obstacles:
-        obstacles.pop()
-        return True
-    return False
-
-def regenerate_obstacles(num):
-    """Regenera todos os obstáculos sem compartilhar vértices"""
+def regenerate_obstacles():
+    """Regenera obstáculos sem compartilhar vértices, até o máximo possível"""
     global obstacles, all_available_cells
     
     # Reseta a lista de obstáculos
@@ -112,156 +74,50 @@ def regenerate_obstacles(num):
     random.shuffle(all_available_cells)
     
     # Adiciona obstáculos um por um, respeitando a restrição de vértices
-    for _ in range(num):
-        if not add_obstacle():
-            break  # Para se não conseguir adicionar mais obstáculos
+    while add_obstacle():
+        if len(obstacles) >= max_obstacles:
+            break  # Para quando atingir o máximo possível de obstáculos
 
-def draw_board():
-    """Desenha o tabuleiro com fundo branco e linhas de grade"""
-    win.fill(WHITE)
-    
-    # Desenha a borda do tabuleiro
-    pygame.draw.rect(win, DARK_GRAY, 
-                    (MARGIN - 3, MARGIN - 3, 
-                     GRID_SIZE * COLS + 6, GRID_SIZE * ROWS + 6), 2)
-    
-    # Desenha as linhas da grade
-    for row in range(ROWS + 1):
-        pygame.draw.line(win, GRAY, 
-                         (MARGIN, MARGIN + row * GRID_SIZE), 
-                         (MARGIN + COLS * GRID_SIZE, MARGIN + row * GRID_SIZE), 2)
-    for col in range(COLS + 1):
-        pygame.draw.line(win, GRAY, 
-                         (MARGIN + col * GRID_SIZE, MARGIN), 
-                         (MARGIN + col * GRID_SIZE, MARGIN + ROWS * GRID_SIZE), 2)
-    
-    # Desenha os vértices (pontos de interseção)
-    for row in range(ROWS + 1):
-        for col in range(COLS + 1):
-            x = MARGIN + col * GRID_SIZE
-            y = MARGIN + row * GRID_SIZE
-            pygame.draw.circle(win, BLACK, (x, y), 4)
+def plot_board():
+    """Plota o tabuleiro com obstáculos"""
+    fig, ax = plt.subplots(figsize=(12, 12))  # Aumenta o tamanho do gráfico
 
-def draw_obstacles():
-    """Desenha os obstáculos como quadrados com borda suave"""
+    # Desenha os quadrados do tabuleiro
+    for row in range(ROWS):
+        for col in range(COLS):
+            ax.add_patch(plt.Rectangle((col, row), GRID_SIZE, GRID_SIZE, edgecolor='gray', facecolor='white'))
+
+    # Desenha os obstáculos como quadrados vermelhos, com tamanho ajustado
     for row, col in obstacles:
-        x = MARGIN + col * GRID_SIZE + 2
-        y = MARGIN + row * GRID_SIZE + 2
-        
-        # Desenha o obstáculo com borda suave
-        pygame.draw.rect(win, RED, (x, y, GRID_SIZE - 4, GRID_SIZE - 4), border_radius=3)
-        
-        # Adiciona um contorno mais escuro
-        pygame.draw.rect(win, (139, 0, 0), (x, y, GRID_SIZE - 4, GRID_SIZE - 4), 2, border_radius=3)
+        ax.add_patch(plt.Rectangle((col + 0.1, row + 0.1), 0.8, 0.8, edgecolor='red', facecolor='red'))  # Ajusta o tamanho e o espaçamento dos obstáculos
 
-def draw_points():
-    """Desenha os pontos iniciais e finais com efeito de brilho"""
-    start_x = MARGIN + start[1] * GRID_SIZE 
-    start_y = MARGIN + start[0] * GRID_SIZE
-    end_x = MARGIN + end[1] * GRID_SIZE
-    end_y = MARGIN + end[0] * GRID_SIZE
-    
-    # Ponto inicial com efeito de brilho
-    pygame.draw.circle(win, (144, 238, 144), (start_x, start_y), 12)
-    pygame.draw.circle(win, GREEN, (start_x, start_y), 8)
-    
-    # Ponto final com efeito de brilho
-    pygame.draw.circle(win, (70, 130, 180), (end_x, end_y), 12)
-    pygame.draw.circle(win, BLUE, (end_x, end_y), 8)
+    # Desenha o ponto inicial sobre o vértice
+    ax.add_patch(plt.Circle((start[1], start[0]), 0.4, color='green'))  # O ponto inicial é no vértice (0, 0)
 
-def display_info():
-    """Exibe informações sobre o número de obstáculos com estilo melhorado"""
-    # Fundo da área de informações
-    pygame.draw.rect(win, WHITE, (WIDTH, 0, INFO_AREA_WIDTH, HEIGHT))
-    pygame.draw.line(win, DARK_GRAY, (WIDTH, 0), (WIDTH, HEIGHT), 2)
-    
-    # Título com fundo sutil
-    pygame.draw.rect(win, (245, 245, 245), (WIDTH + 10, 15, INFO_AREA_WIDTH - 20, 40), border_radius=5)
-    title = title_font.render("Controles:", True, (50, 50, 50))
-    win.blit(title, (WIDTH + 20, 22))
-    
-    # Linha decorativa abaixo do título
-    pygame.draw.line(win, DARK_GRAY, 
-                     (WIDTH + 20, 65), 
-                     (WIDTH + INFO_AREA_WIDTH - 20, 65), 1)
-    
-    # Lista de instruções com ícones
-    instructions = [
-        ("↑: Adicionar obstáculo", GREEN),
-        ("↓: Remover obstáculo", RED),
-        ("R: Regenerar todos", BLUE),
-        ("ESPAÇO: Aleatório", (128, 0, 128)),  # Roxo
-        ("Esc: Sair", DARK_GRAY)
-    ]
-    
-    for i, (instruction, color) in enumerate(instructions):
-        # Desenha um pequeno círculo como ícone
-        pygame.draw.circle(win, color, (WIDTH + 25, 95 + 35 * i), 6)
-        
-        # Texto da instrução
-        text_surface = info_font.render(instruction, True, BLACK)
-        win.blit(text_surface, (WIDTH + 40, 85 + 35 * i))
-    
-    # Contador de obstáculos em um quadro com borda suave
-    pygame.draw.rect(win, (245, 245, 245), 
-                    (WIDTH + 15, HEIGHT - 80, INFO_AREA_WIDTH - 30, 60), 
-                    border_radius=5)
-    pygame.draw.rect(win, DARK_GRAY, 
-                    (WIDTH + 15, HEIGHT - 80, INFO_AREA_WIDTH - 30, 60), 
-                    1, border_radius=5)
-    
-    percentage = len(obstacles) / total_cells * 100
-    obstacle_text = f'Obstáculos: {len(obstacles)}'
-    percentage_text = f'({percentage:.1f}%)'
-    
-    text_surface1 = counter_font.render(obstacle_text, True, (70, 70, 70))
-    text_surface2 = info_font.render(percentage_text, True, (70, 70, 70))
-    
-    win.blit(text_surface1, (WIDTH + 25, HEIGHT - 70))
-    win.blit(text_surface2, (WIDTH + 25, HEIGHT - 40))
+    # Desenha o ponto final sobre o vértice da última célula (canto inferior direito)
+    ax.add_patch(plt.Circle((end[1], end[0]), 0.4, color='blue'))  # O ponto final é no vértice (ROWS-1, COLS-1)
 
-def main():
-    global num_obstacles, obstacles
-    clock = pygame.time.Clock()
-    run = True
-
-    while run:
-        clock.tick(30)  
-
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                run = False
-            
-            # Ajustar quantidade de obstáculos
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_UP:
-                    if num_obstacles < max_obstacles:
-                        if add_obstacle():
-                            num_obstacles += 1
-
-                if event.key == pygame.K_DOWN:
-                    if num_obstacles > min_obstacles:
-                        if remove_obstacle():
-                            num_obstacles -= 1
-                        
-                if event.key == pygame.K_r:
-                    num_obstacles = len(obstacles)  # Mantém o mesmo número
-                    regenerate_obstacles(num_obstacles)
-                    
-                if event.key == pygame.K_SPACE:
-                    num_obstacles = random.randint(min_obstacles, max_obstacles)
-                    regenerate_obstacles(num_obstacles)
-
-                if event.key == pygame.K_ESCAPE:
-                    run = False
-
-        draw_board()
-        draw_obstacles()
-        draw_points()
-        display_info()
-        pygame.display.update()
+    # Ajusta os limites e o grid
+    ax.set_xlim(0, COLS)
+    ax.set_ylim(0, ROWS)
     
-    pygame.quit()
+    # Ajuste os vértices para que fiquem nas bordas (extremos das células)
+    ax.set_xticks([x for x in range(COLS + 1)])  # Coloca os números nas bordas dos quadrados
+    ax.set_yticks([y for y in range(ROWS + 1)])  # Coloca os números nas bordas dos quadrados
+    ax.set_aspect('equal')
+    ax.invert_yaxis()  # Inverte o eixo Y para que (0, 0) fique no canto superior esquerdo
 
-if __name__ == "__main__":
-    main()
+    # Exibe o gráfico
+    plt.grid(True)
+    
+    # Ajuste dinâmico para os valores dos eixos
+    ax.set_xticklabels(range(COLS + 1), fontsize=8)  # Ajusta para que as labels comecem de 0 a COLS
+    ax.set_yticklabels(range(ROWS + 1), fontsize=8, rotation=0, verticalalignment='center', horizontalalignment='right')  # Ajusta para que as labels comecem de 0 a ROWS
+
+    plt.show()
+
+# Regenerar o máximo de obstáculos possível respeitando as restrições
+regenerate_obstacles()
+
+# Plotar o tabuleiro
+plot_board()
