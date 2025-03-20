@@ -1,6 +1,6 @@
-import matplotlib.pyplot as plt  
 import random
 import math
+import matplotlib.pyplot as plt
 from matplotlib.widgets import RectangleSelector
 
 # Configuração do tabuleiro
@@ -22,6 +22,7 @@ def calcular_distancia(p1, p2):
 # Função para adicionar obstáculos respeitando a distância mínima e limites do tabuleiro
 def adicionar_obstaculo():
     tentativas = 0
+    max_tentativas = largura_tabuleiro * altura_tabuleiro  # Definir o número máximo de tentativas baseado no tamanho do tabuleiro
     while len(obstaculos) < num_obstaculos:
         novo_x = random.uniform(0.5, largura_tabuleiro - 0.5)
         novo_y = random.uniform(0.5, altura_tabuleiro - 0.5)
@@ -35,13 +36,19 @@ def adicionar_obstaculo():
         # Adiciona se não houver colisão
         if not colisao:
             obstaculos.append(novo_obstaculo)
+        
         tentativas += 1
-        if tentativas > 1000:
-            print("Não foi possível alocar todos os obstáculos devido ao espaço limitado.")
+
+        # Verificar se há tentativas suficientes ou espaço suficiente no tabuleiro
+        if tentativas > max_tentativas:  # Quando a quantidade de tentativas ultrapassa a capacidade do tabuleiro
+            print("Espaço insuficiente para adicionar todos os obstáculos.")
             break
 
 # Adicionar obstáculos de forma distribuída
 adicionar_obstaculo()
+
+# Exibir os obstáculos adicionados (apenas para teste)
+print(f"Obstáculos adicionados: {len(obstaculos)}")
 
 # Função para plotar o tabuleiro
 def plotar_tabuleiro():
@@ -65,18 +72,19 @@ def plotar_tabuleiro():
     plt.axhline(color='black')  # Linha horizontal (eixo x)
     plt.axvline(color='black')  # Linha vertical (eixo y)
 
-    # Permite interação para selecionar o zoom
+    # Função de zoom com o mouse
     def onselect(eclick, erelease):
-        xmin, xmax = sorted([eclick.xdata, erelease.xdata])
-        ymin, ymax = sorted([eclick.ydata, erelease.ydata])
-        ax.set_xlim(xmin, xmax)
-        ax.set_ylim(ymin, ymax)
+        # Ajusta os limites dos eixos conforme a área selecionada
+        x1, y1 = eclick.xdata, eclick.ydata
+        x2, y2 = erelease.xdata, erelease.ydata
+        ax.set_xlim(min(x1, x2), max(x1, x2))
+        ax.set_ylim(min(y1, y2), max(y1, y2))
         plt.draw()
 
-    # Cria um "zoom" interativo
-    selector = RectangleSelector(ax, onselect, useblit=True, button=[1])
+    # Adiciona o widget de seleção de área para zoom
+    rectangle_selector = RectangleSelector(ax, onselect, useblit=True, button=[1], minspanx=5, minspany=5, spancoords='pixels', interactive=True)
 
     plt.show()
 
-# Plotar o tabuleiro com os obstáculos
+# Plotar o tabuleiro com os obstáculos e ativar o zoom
 plotar_tabuleiro()
